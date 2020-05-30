@@ -8,7 +8,7 @@ import {
 //Components
 import Form from './components/form';
 import Login from './components/login';
-import Home from './components/home';
+import Home from './components/home/home';
 
 function App() {
   return (

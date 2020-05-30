@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../index.css'
 import './form.css';
 
 function Login (){

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+/* Import Estilos*/
+import '../index.css'
 import './form.css';
 
 function Form() {

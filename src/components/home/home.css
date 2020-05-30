@@ -1,0 +1,36 @@
+/*
+    Estilos Home
+*/
+
+a{
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 70px;
+}
+
+.logo{
+    color: black;
+}
+
+.nav-bar{
+    list-style: none;
+}
+
+.nav-bar li{
+    display: inline-block;
+    padding: 0 15px;
+    text-transform: uppercase;
+}
+
+.nav-bar li a{
+    color: var(--fondoForm);
+}
+
+.nav-bar li a:hover{
+    color: #305a80;
+}

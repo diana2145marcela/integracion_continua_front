@@ -1,19 +1,6 @@
-:root{
-    --colorText: #49454567;
-    --fondoForm: #CEDEDE;
-    --colorInputs: #c6c6c6;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'roboto';
-    background: #1B3C59;
-}
+/*
+    Estilos Formulario y Login
+*/
 
 .container-form{
     height: 650px;
