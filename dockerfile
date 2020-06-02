@@ -1,24 +1,18 @@
-# Stage 1
+# Stage 1 - imagen base con Node.js instalado
 FROM node:10
-
-# Create app directory
+# CReacion dle directorio de trabajo
 WORKDIR /usr/src/app
-
-# Expose port for service
+# Exponemos los puertos de la aplicacion
 EXPOSE 5000
+# Asignamos las variables de entorno
 ARG REACT_APP_URL
 ENV REACT_APP_URL $REACT_APP_URL
-
-# Install and configure `serve`.
+# Instalamos "serve" para exponer nuestra aplicacion
 RUN npm install -g serve
-
-# Copy source code to image
+# Copiamos el codigo de nuestra aplicacion al directorio de trabajo
 COPY . .
-
-# Install dependencies
+# Instalamos dependencias
 RUN npm install
-
-
-# Build app and start server from script
+# Corremos nuestra aplicacion
 CMD ["/usr/src/app/run"]
 
