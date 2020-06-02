@@ -1,7 +1,7 @@
-import Axios from 'axios';
+import axios from 'axios';
 
 const clienteAxios = axios.create({
-    url: 'http://localhost:3000'
+    baseURL: 'https://integracioncontinuaback.herokuapp.com'
 })
 
 export default clienteAxios;

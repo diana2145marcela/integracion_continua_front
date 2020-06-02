@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import clienteAxios from '../config/axios';
+import Home from './home/Home'
 
 /* Import Estilos*/
 import '../index.css'
@@ -6,7 +8,7 @@ import './form.css';
 
 function Form() {
 
-    const [state, setState] = useState ({
+    const [usuario, setUsuario] = useState ({
         nombre: ' ',
         correo_electronico: ' ',
         password: ' ',
@@ -16,57 +18,65 @@ function Form() {
     const [error, setError] = useState (false)
 
     const handleChange = e => {
-        setState ({
-            ...state, 
+        setUsuario ({
+            ...usuario, 
             [e.target.name] : e.target.value
         })
     }
 
-    const submitInfo = e => {
+    const submitInfo = async e => {
         e.preventDefault()
-        if(state.nombre === ' ' || 
-            state.correo_electronico === ' ' || 
-            state.password === ' ' || 
-            state.password_confirmation === ' '){
+        if(usuario.nombre === ' ' || 
+            usuario.correo_electronico === ' ' || 
+            usuario.password === ' ' || 
+            usuario.password_confirmation === ' '){
             setError(true)
             return
         }
 
         setError(false)
+        try {
+            await clienteAxios.post('/usuarios', {usuario})
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
-        <section className="container-form">
-            <form action="#" method="POST" id="form" onSubmit={submitInfo} >   
-                <div className="form">
-                    <h1>Registro Usuario</h1>
+        <React.Fragment>
+            <Home />
+            <section className="container-form">
+                <form id="form" onSubmit={submitInfo} >   
+                    <div className="form">
+                        <h1>Registro Usuario</h1>
 
-                    {error && <p className="info-error">Debes de completar todos los campos</p>}
+                        {error && <p className="info-error">Debes de completar todos los campos</p>}
 
-                    <div className="form-input">
-                        <input type="text" name="nombre" onChange={handleChange} />
-                        <span className="barra-form"></span>
-                        <label>Nombre Completo</label>
+                        <div className="form-input">
+                            <input type="text" name="nombre" onChange={handleChange} />
+                            <span className="barra-form"></span>
+                            <label>Nombre Completo</label>
+                        </div>
+                        <div className="form-input">
+                            <input type="email" name="correo_electronico" onChange={handleChange} />
+                            <span className="barra-form"></span>
+                            <label>Correo Electronico</label>
+                        </div>
+                        <div className="form-input">
+                            <input type="password" name="password" onChange={handleChange} />
+                            <span className="barra-form"></span>
+                            <label>Contraseña</label>
+                        </div>
+                        <div className="form-input">
+                            <input type="password" name="password_confirmation" onChange={handleChange} />
+                            <span className="barra-form"></span>
+                            <label>Confirmación de Contraseña</label>
+                        </div>
+                        <button type="submit">Registrarse</button>
                     </div>
-                    <div className="form-input">
-                        <input type="email" name="correo_electronico" onChange={handleChange} />
-                        <span className="barra-form"></span>
-                        <label>Correo Electronico</label>
-                    </div>
-                    <div className="form-input">
-                        <input type="password" name="password" onChange={handleChange} />
-                        <span className="barra-form"></span>
-                        <label>Contraseña</label>
-                    </div>
-                    <div className="form-input">
-                        <input type="password" name="password_confirmation" onChange={handleChange} />
-                        <span className="barra-form"></span>
-                        <label>Confirmación de Contraseña</label>
-                    </div>
-                    <button type="submit">Registrarse</button>
-                </div>
-            </form>
-        </section>
+                </form>
+            </section>
+        </React.Fragment>
     );
 }
 
